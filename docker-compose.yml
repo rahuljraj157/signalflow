@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./signalflow-backend
+    container_name: signalflow-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./signalflow-backend/.env
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo
+    container_name: signalflow-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis
+    container_name: signalflow-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo-data:
