@@ -5,8 +5,10 @@ const initSocket = (server) => {
 
   io = socketIo(server, {
     cors: {
-      origin: "*",
-    },
+  origin: "https://signalflow-vert.vercel.app",
+  methods: ["GET", "POST"],
+  credentials: true,
+},
   });
 
   io.on("connection", (socket) => {

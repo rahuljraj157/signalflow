@@ -6,9 +6,10 @@ export const connectSocket = () => {
   if (!socket) {
     const URL = process.env.NEXT_PUBLIC_API_URL as string;
 
-    socket = io(URL, {
-      withCredentials: true, // safe for production
-    });
+  socket = io(URL, {
+  transports: ["websocket"],
+  withCredentials: true,
+});
   }
 };
 
